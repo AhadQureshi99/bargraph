@@ -1,0 +1,1615 @@
+<!-- ... existing code ... -->
+    <title>GrafiKidz 🚀📊 - Dunia Graf & Carta Palang Interaktif Cikgu Sakinah & Cikgu Muslihah</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts (Comfortaa & Plus Jakarta Sans & Fredoka) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Fredoka:wght@400;600;700;900&family=Plus+Jakarta+Sans:wght@500;700;800;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Fredoka', sans-serif;
+            background-color: #fef9c3; /* Soft warm yellow */
+            background-image: 
+                radial-gradient(#fde047 2px, transparent 2px), 
+                radial-gradient(#fde047 2px, #fef9c3 2px);
+            background-size: 30px 30px;
+            background-position: 0 0, 15px 15px;
+            overflow-x: hidden;
+        }
+        h1, h2, h3, h4 {
+            font-family: 'Fredoka', cursive;
+            font-weight: 700;
+        }
+        /* Thick Bold Cartoon Styling (Neubrutalism) */
+        .cartoon-card {
+            border: 4px solid #1e293b;
+            box-shadow: 8px 8px 0px #1e293b;
+            border-radius: 28px;
+            background-color: #ffffff;
+            transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .cartoon-card:hover {
+            transform: translate(-3px, -3px);
+            box-shadow: 11px 11px 0px #1e293b;
+        }
+        .cartoon-btn {
+            border: 3px solid #1e293b;
+            box-shadow: 5px 5px 0px #1e293b;
+            border-radius: 20px;
+            transition: all 0.15s ease-in-out;
+        }
+        .cartoon-btn:active {
+            transform: translate(4px, 4px);
+            box-shadow: 1px 1px 0px #1e293b;
+        }
+        .step-active {
+            border-color: #3b82f6 !important;
+            background-color: #eff6ff !important;
+            color: #1d4ed8 !important;
+            box-shadow: 4px 4px 0px #1d4ed8 !important;
+        }
+        /* Bouncy Letters with Prominent 3D depth and thickness */
+        @keyframes bounce-letter {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+        }
+        .bounce-word span {
+            display: inline-block;
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 900;
+            font-size: 1.1em;
+            animation: bounce-letter 1.5s infinite ease-in-out;
+            /* Multi-layer shadow for cartoon 3D pop effect */
+            text-shadow: 
+                1px 1px 0px #1e293b,
+                2px 2px 0px #1e293b,
+                3px 3px 0px #1e293b,
+                4px 4px 0px #1e293b,
+                5px 5px 0px #1e293b;
+        }
+        .bounce-word span:nth-child(1) { animation-delay: 0s; color: #f43f5e; }
+        .bounce-word span:nth-child(2) { animation-delay: 0.1s; color: #3b82f6; }
+        .bounce-word span:nth-child(3) { animation-delay: 0.2s; color: #10b981; }
+        .bounce-word span:nth-child(4) { animation-delay: 0.3s; color: #eab308; }
+        .bounce-word span:nth-child(5) { animation-delay: 0.4s; color: #a855f7; }
+        .bounce-word span:nth-child(6) { animation-delay: 0.5s; color: #ec4899; }
+        .bounce-word span:nth-child(7) { animation-delay: 0.6s; color: #06b6d4; }
+        .bounce-word span:nth-child(8) { animation-delay: 0.7s; color: #f97316; }
+        .bounce-word span:nth-child(9) { animation-delay: 0.8s; color: #10b981; }
+
+        @keyframes float-balloon {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
+        }
+        .balloon-anim {
+            animation: float-balloon 4s infinite ease-in-out;
+        }
+        @keyframes float-cloud {
+            0%, 100% { transform: translateX(0px); }
+            50% { transform: translateX(15px); }
+        }
+        .cloud-anim {
+            animation: float-cloud 6s infinite ease-in-out;
+        }
+        @keyframes bar-wiggle {
+            0%, 100% { transform: scaleY(1); }
+            50% { transform: scaleY(1.05); }
+        }
+        .bar-wiggle-effect {
+            animation: bar-wiggle 0.3s ease-in-out;
+            transform-origin: bottom;
+        }
+        /* Confetti particles */
+        .confetti {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            animation: fall linear forwards;
+            pointer-events: none;
+            z-index: 99;
+        }
+        @keyframes fall {
+            0% { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(450px) rotate(360deg); opacity: 0; }
+        }
+        /* Shimmer effect for loading */
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        .shimmer {
+            background: linear-gradient(90deg, #f3f4f6 25%, #e5e7eb 50%, #f3f4f6 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+        }
+        /* Sound wave animation */
+        @keyframes wave {
+            0%, 100% { height: 4px; }
+            50% { height: 18px; }
+        }
+        .sound-bar {
+            width: 4px;
+            height: 10px;
+            background-color: #1e293b;
+            animation: wave 0.8s ease-in-out infinite;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col relative pb-6 select-none">
+
+    <!-- Efek Meletus Belon & Konfeti Container -->
+    <div id="effect-overlay" class="absolute inset-0 pointer-events-none overflow-hidden z-40"></div>
+
+    <!-- Hiasan Kartun Awan Luaran -->
+    <div class="absolute top-6 left-8 text-pink-300/40 text-7xl pointer-events-none cloud-anim hidden lg:block"><i class="fa-solid fa-cloud"></i></div>
+    <div class="absolute top-28 right-16 text-sky-300/40 text-8xl pointer-events-none cloud-anim hidden lg:block" style="animation-delay: 2.5s;"><i class="fa-solid fa-cloud"></i></div>
+    <div class="absolute bottom-16 left-12 text-purple-300/35 text-8xl pointer-events-none cloud-anim hidden lg:block" style="animation-delay: 1.2s;"><i class="fa-solid fa-cloud"></i></div>
+
+    <!-- Custom Modal Dialog (Reka Bentuk Kartun Tebal GrafiKidz) -->
+    <div id="custom-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center z-50 opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="bg-white p-7 rounded-[2.5rem] border-4 border-slate-900 shadow-[12px_12px_0px_#1e293b] max-w-md w-full mx-4 transform scale-95 transition-transform duration-300" id="modal-content">
+            <div class="flex flex-col items-center text-center">
+                <div id="modal-icon-bg" class="w-24 h-24 rounded-full bg-pink-100 border-4 border-slate-900 flex items-center justify-center text-slate-950 text-5xl mb-4">
+                    <i id="modal-icon" class="fa-solid fa-star text-amber-500 animate-spin" style="animation-duration: 3s;"></i>
+                </div>
+                <h3 id="modal-title" class="text-3xl font-black text-slate-900 mb-2">Maklumat</h3>
+                <p id="modal-message" class="text-sm font-semibold text-slate-700 mb-6 leading-relaxed">Sila baca maklumat penting ini.</p>
+                <button onclick="closeModal()" class="w-full bg-yellow-400 hover:bg-yellow-300 text-slate-900 font-black py-3 px-6 cartoon-btn text-lg transition-all">
+                    Okey, Jom Teroka! 🚀
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast-notif" class="fixed bottom-5 right-5 z-50 bg-amber-400 text-slate-950 font-black px-6 py-4 rounded-2xl border-3 border-slate-950 shadow-[4px_4px_0px_#1e293b] flex items-center gap-3 transform translate-y-20 opacity-0 transition-all duration-300">
+        <span class="text-xl text-indigo-700"><i class="fa-solid fa-wand-magic-sparkles animate-bounce"></i></span>
+        <span id="toast-message" class="text-sm">Tugasan berjaya dijalankan!</span>
+    </div>
+
+    <!-- Header Laman Web (GrafiKidz Premium Cartoon Theme) -->
+    <header class="bg-gradient-to-r from-pink-400 via-indigo-400 to-emerald-400 text-slate-950 py-5 px-6 relative border-b-4 border-slate-950 shadow-md">
+        <div class="max-w-7xl mx-auto flex flex-col lg:flex-row justify-between items-center gap-5 relative z-10">
+            
+            <div class="flex items-center gap-5">
+                <!-- Mascot Kartun "Koko" di Header -->
+                <div class="bg-white p-2.5 rounded-3xl border-3 border-slate-950 shadow-[5px_5px_0px_#1e293b] balloon-anim cursor-pointer hover:scale-105 transition-transform" onclick="playCuteBeep()">
+                    <svg id="header-mascot" width="65" height="65" viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="40" fill="#a7f3d0" stroke="#1e293b" stroke-width="4"/>
+                        <circle cx="18" cy="25" r="12" fill="#f472b6" stroke="#1e293b" stroke-width="4"/>
+                        <circle cx="82" cy="25" r="12" fill="#f472b6" stroke="#1e293b" stroke-width="4"/>
+                        <line x1="50" y1="10" x2="50" y2="2" stroke="#1e293b" stroke-width="4"/>
+                        <circle cx="50" cy="2" r="6" fill="#fbbf24" stroke="#1e293b" stroke-width="3"/>
+                        <rect x="25" y="35" width="50" height="35" rx="10" fill="#1e293b"/>
+                        <path d="M 35 52 Q 40 45 45 52" stroke="#34d399" stroke-width="4" fill="none" stroke-linecap="round"/>
+                        <path d="M 55 52 Q 60 45 65 52" stroke="#34d399" stroke-width="4" fill="none" stroke-linecap="round"/>
+                        <path d="M 45 62 Q 50 67 55 62" stroke="#34d399" stroke-width="3" fill="none" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <div>
+                    <!-- Bouncing GrafiKidz Logo text with 3D Pop Shadow -->
+                    <h1 class="text-4xl md:text-5xl font-black tracking-wider flex items-center gap-1 text-slate-950 bounce-word">
+                        <span>G</span><span>r</span><span>a</span><span>f</span><span>i</span><span>K</span><span>i</span><span>d</span><span>z</span> 🚀✨
+                    </h1>
+                    <p class="text-xs md:text-sm font-bold text-slate-900 mt-1">
+                        Sains Berkomunikasi & Belajar Melukis Carta Palang Bersama Cikgu Sakinah & Cikgu Muslihah! 👩‍🏫👩‍🏫🎵
+                    </p>
+                </div>
+            </div>
+
+            <!-- Menu Pilihan Mod & Kawalan Audio (Telah ditukarkan mengikut kehendak anda) -->
+            <div class="flex flex-wrap items-center gap-3">
+                <!-- Kawalan Bunyi Suara -->
+                <button id="btn-sound-toggle" onclick="toggleSound()" class="px-4 py-2.5 rounded-2xl border-2 border-slate-950 bg-white hover:bg-yellow-100 shadow-[3px_3px_0px_#1e293b] transition-all flex items-center gap-2 text-xs font-bold text-slate-900" title="Pasang/Senyap bunyi">
+                    <span id="sound-icon-wrapper" class="flex items-center gap-0.5">
+                        <span class="sound-bar" style="animation-delay: 0.1s"></span>
+                        <span class="sound-bar" style="animation-delay: 0.3s"></span>
+                        <span class="sound-bar" style="animation-delay: 0.5s"></span>
+                    </span>
+                    <span id="sound-status-text">🔊 Bunyi Aktif</span>
+                </button>
+
+                <!-- Mod Switcher (Dua-dua butang sentiasa aktif & boleh ditekan bila-bila masa) -->
+                <div class="flex bg-indigo-150 p-1.5 rounded-2xl border-3 border-slate-950 bg-white shadow-[4px_4px_0px_#1e293b]">
+                    <button id="btn-tutorial" onclick="switchMode('tutorial')" class="px-5 py-2.5 rounded-xl text-xs md:text-sm font-black transition-all duration-300 bg-yellow-400 text-slate-950 border-2 border-slate-950 shadow-[1.5px_1.5px_0px_#0f172a] cursor-pointer hover:scale-105">
+                        <i class="fa-solid fa-graduation-cap mr-1"></i> Kenali Graf
+                    </button>
+                    <button id="btn-playground" onclick="switchMode('playground')" class="px-5 py-2.5 rounded-xl text-xs md:text-sm font-black transition-all duration-300 text-slate-700 hover:text-slate-950 ml-1 cursor-pointer hover:scale-105">
+                        <i class="fa-solid fa-gamepad mr-1"></i> Jom Terokai
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </header>
+
+    <!-- Konten Utama -->
+    <main class="flex-grow max-w-7xl w-full mx-auto p-4 flex flex-col gap-5 mt-4">
+        
+        <!-- ========================================== -->
+        <!-- SECTION 1: MOD TUTORIAL (SIDE-BY-SIDE)     -->
+        <!-- ========================================== -->
+        <section id="section-tutorial" class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
+            
+            <!-- PANEL KIRI (Tutorial): Jadual & Peta Langkah -->
+            <div class="lg:col-span-5 flex flex-col gap-4">
+                
+                <!-- Kad Arahan Pintar Guru -->
+                <div class="bg-cyan-100 border-3 border-slate-950 p-4 rounded-3xl shadow-[5px_5px_0px_#1e293b] relative overflow-hidden">
+                    <div class="absolute -right-6 -bottom-6 text-cyan-300/30 text-7xl"><i class="fa-solid fa-face-smile"></i></div>
+                    <div class="flex items-start gap-3">
+                        <div class="bg-cyan-400 text-slate-950 w-11 h-11 rounded-2xl flex items-center justify-center text-xl border-2 border-slate-950 shadow-[2px_2px_0px_#1e293b] flex-shrink-0 balloon-anim">
+                            <i id="tut-instruction-icon" class="fa-solid fa-compass"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-black text-slate-950 text-xs" id="tut-step-title">Langkah 1: Bina Paksi X dan Paksi Y</h4>
+                            <p class="text-[11px] font-bold text-slate-700 mt-1 leading-relaxed" id="tut-step-desc">
+                                Setiap carta palang memerlukan paksi menegak (Paksi Y) dan paksi mengufuk (Paksi X). Tekan butang di bawah!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Data Tugasan Rani (Asas Pembelajaran) -->
+                <div class="bg-pink-100 border-3 border-slate-950 p-4 rounded-3xl shadow-[5px_5px_0px_#1e293b]">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="bg-pink-400 text-slate-950 text-[10px] font-black px-3 py-1.5 rounded-full border-2 border-slate-950 uppercase tracking-wider">
+                            <i class="fa-solid fa-file-signature mr-1"></i> Jadual Data Rani 📝
+                        </span>
+                        <span class="text-[10px] font-bold text-slate-600">Rujuk fail: image_80e6bc.png</span>
+                    </div>
+                    <p class="text-[11px] font-semibold text-slate-800 mb-2 leading-relaxed">
+                        Rani mengumpul cara kawan-kawannya ke sekolah. Mari tukarkan jadual ini menjadi graf yang menarik:
+                    </p>
+                    <div class="text-xs bg-white rounded-2xl border-3 border-slate-950 overflow-hidden shadow-[2px_2px_0px_#1e293b]">
+                        <table class="w-full text-left">
+                            <tbody class="text-slate-800 font-bold divide-y-2 divide-slate-100">
+                                <tr class="hover:bg-slate-50"><td class="p-2 pl-3">🚶 Berjalan kaki</td><td class="p-2 text-center text-blue-600 font-black">6</td></tr>
+                                <tr class="hover:bg-slate-50"><td class="p-2 pl-3">🚲 Menunggang basikal</td><td class="p-2 text-center text-emerald-600 font-black">8</td></tr>
+                                <tr class="hover:bg-slate-50"><td class="p-2 pl-3">🏍️ Membonceng motosikal</td><td class="p-2 text-center text-amber-600 font-black">5</td></tr>
+                                <tr class="hover:bg-slate-50"><td class="p-2 pl-3">🚗 Menaiki kereta</td><td class="p-2 text-center text-red-600 font-black">11</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Navigasi Langkah Visual Sisi (Boleh ditekan terus bila-bila masa!) -->
+                <div class="bg-white p-4 rounded-3xl border-3 border-slate-950 shadow-[5px_5px_0px_#1e293b]">
+                    <h3 class="text-xs font-black text-slate-800 mb-1 pb-1.5 flex items-center gap-1.5 border-b-2 border-slate-100">
+                        <i class="fa-solid fa-flag-checkered text-emerald-500"></i> Peta Langkah Melukis (Tekan terus untuk lompat!)
+                    </h3>
+                    <p class="text-[9px] font-bold text-slate-400 mb-2">Boleh klik mana-mana nombor langkah di bawah untuk meneroka:</p>
+                    <div class="grid grid-cols-5 lg:grid-cols-1 gap-2">
+                        <div id="step-nav-1" onclick="jumpToStep(1)" class="flex flex-col lg:flex-row items-center gap-1 lg:gap-3 p-1.5 rounded-xl border-2 border-slate-200 font-bold text-[9px] lg:text-xs cursor-pointer hover:scale-105 active:scale-95 transition-all">
+                            <span class="w-5 h-5 rounded-full flex items-center justify-center bg-slate-200 text-slate-600 font-bold text-[9px]">1</span>
+                            <span class="hidden lg:inline">Paksi X & Y</span>
+                        </div>
+                        <div id="step-nav-2" onclick="jumpToStep(2)" class="flex flex-col lg:flex-row items-center gap-1 lg:gap-3 p-1.5 rounded-xl border-2 border-slate-200 font-bold text-[9px] lg:text-xs cursor-pointer hover:scale-105 active:scale-95 transition-all">
+                            <span class="w-5 h-5 rounded-full flex items-center justify-center bg-slate-200 text-slate-600 font-bold text-[9px]">2</span>
+                            <span class="hidden lg:inline">Label Paksi</span>
+                        </div>
+                        <div id="step-nav-3" onclick="jumpToStep(3)" class="flex flex-col lg:flex-row items-center gap-1 lg:gap-3 p-1.5 rounded-xl border-2 border-slate-200 font-bold text-[9px] lg:text-xs cursor-pointer hover:scale-105 active:scale-95 transition-all">
+                            <span class="w-5 h-5 rounded-full flex items-center justify-center bg-slate-200 text-slate-600 font-bold text-[9px]">3</span>
+                            <span class="hidden lg:inline">Senggatan</span>
+                        </div>
+                        <div id="step-nav-4" onclick="jumpToStep(4)" class="flex flex-col lg:flex-row items-center gap-1 lg:gap-3 p-1.5 rounded-xl border-2 border-slate-200 font-bold text-[9px] lg:text-xs cursor-pointer hover:scale-105 active:scale-95 transition-all">
+                            <span class="w-5 h-5 rounded-full flex items-center justify-center bg-slate-200 text-slate-600 font-bold text-[9px]">4</span>
+                            <span class="hidden lg:inline">Lukis Palang</span>
+                        </div>
+                        <div id="step-nav-5" onclick="jumpToStep(5)" class="flex flex-col lg:flex-row items-center gap-1 lg:gap-3 p-1.5 rounded-xl border-2 border-slate-200 font-bold text-[9px] lg:text-xs cursor-pointer hover:scale-105 active:scale-95 transition-all">
+                            <span class="w-5 h-5 rounded-full flex items-center justify-center bg-slate-200 text-slate-600 font-bold text-[9px]">5</span>
+                            <span class="hidden lg:inline">Tajuk Graf</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- PANEL KANAN (Tutorial): Live Canvas & Panel Tindakan (Side-by-Side!) -->
+            <div class="lg:col-span-7 cartoon-card p-5 flex flex-col justify-between min-h-[550px] bg-sky-50">
+                
+                <!-- Kawalan Interaktif Atas SVG -->
+                <div class="bg-white p-3 rounded-2xl border-3 border-slate-950 shadow-[3px_3px_0px_#0f172a] mb-3 flex items-center justify-between">
+                    <span class="text-xs font-black text-slate-800"><i class="fa-solid fa-palette text-amber-500 mr-1"></i> Kanvas Lukisan Digital:</span>
+                    <span class="text-[11px] text-slate-500 font-bold bg-slate-100 px-3 py-1 rounded-full border border-slate-200" id="txt-step-indicator">Langkah 1 daripada 5</span>
+                </div>
+
+                <!-- Canvas Visualisasi Carta (Interaktif SVG) -->
+                <div class="flex-grow flex items-center justify-center bg-white border-3 border-slate-950 rounded-2xl p-3 relative overflow-hidden min-h-[300px]">
+                    <svg id="interactive-svg" width="530" height="340" class="max-w-full drop-shadow-sm bg-white rounded-xl">
+                        <!-- Gridline latar belakang -->
+                        <g id="svg-grid" class="opacity-0 transition-opacity duration-500"></g>
+                        
+                        <!-- Paksi-Y & Paksi-X -->
+                        <line id="svg-axis-y" x1="60" y1="50" x2="60" y2="290" stroke="#0f172a" stroke-width="5" stroke-linecap="round" class="opacity-0 transition-all duration-700"></line>
+                        <line id="svg-axis-x" x1="60" y1="290" x2="500" y2="290" stroke="#0f172a" stroke-width="5" stroke-linecap="round" class="opacity-0 transition-all duration-700"></line>
+                        
+                        <!-- Panah Paksi -->
+                        <polygon id="arrow-y" points="54,50 66,50 60,38" fill="#0f172a" class="opacity-0 transition-opacity duration-700"></polygon>
+                        <polygon id="arrow-x" points="500,284 500,296 512,290" fill="#0f172a" class="opacity-0 transition-opacity duration-700"></polygon>
+
+                        <!-- Label Paksi Y & X -->
+                        <text id="lbl-y-axis" x="18" y="160" fill="#0f172a" font-size="11" font-weight="black" transform="rotate(-90, 18, 160)" text-anchor="middle" class="opacity-0 transition-opacity duration-500"></text>
+                        <text id="lbl-x-axis" x="280" y="330" fill="#0f172a" font-size="11" font-weight="black" text-anchor="middle" class="opacity-0 transition-opacity duration-500"></text>
+
+                        <!-- Senggatan Skala Paksi-Y -->
+                        <g id="svg-ticks-y" class="opacity-0 transition-opacity duration-500"></g>
+
+                        <!-- Label Kategori Paksi-X -->
+                        <g id="svg-categories-x" class="opacity-0 transition-opacity duration-500">
+                            <text x="110" y="305" fill="#0f172a" font-size="10" text-anchor="middle" font-weight="black">🚶 Jalan</text>
+                            <text x="210" y="305" fill="#0f172a" font-size="10" text-anchor="middle" font-weight="black">🚲 Basikal</text>
+                            <text x="310" y="305" fill="#0f172a" font-size="10" text-anchor="middle" font-weight="black">🏍️ Motor</text>
+                            <text x="410" y="305" fill="#0f172a" font-size="10" text-anchor="middle" font-weight="black">🚗 Kereta</text>
+                        </g>
+
+                        <!-- Kumpulan Palang Interaktif -->
+                        <g id="svg-bars" class="opacity-100"></g>
+
+                        <!-- Tajuk Graf -->
+                        <text id="lbl-graph-title" x="280" y="28" fill="#0f172a" font-size="14" font-family="'Comfortaa', cursive" font-weight="black" text-anchor="middle" class="opacity-0 transition-opacity duration-500">Cara Rakan-Rakan Rani Datang Ke Sekolah</text>
+                    </svg>
+
+                    <!-- Overlay Blok Arahan Tindakan Mengikut Langkah -->
+                    <div id="canvas-overlay" class="absolute inset-0 bg-slate-950/5 backdrop-blur-[0.5px] flex items-center justify-center transition-all duration-500">
+                        <div id="interactive-controls" class="bg-white p-4 rounded-3xl border-3 border-slate-950 shadow-[5px_5px_0px_#0f172a] max-w-sm w-full text-center">
+                            <!-- Kandungan dijana secara dinamik oleh JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigasi Langkah Bawah -->
+                <div class="mt-3 flex justify-between items-center border-t-2 border-slate-200 pt-3">
+                    <button id="btn-prev-step" onclick="prevStep()" class="px-4 py-2 rounded-xl text-xs font-black bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all border-2 border-slate-300 shadow-[2px_2px_0px_#ccc] hover:scale-105 active:scale-95">
+                        <i class="fa-solid fa-arrow-left mr-1"></i> Undur Sikit
+                    </button>
+                    <button id="btn-next-step" onclick="nextStep()" class="px-5 py-2.5 rounded-xl text-xs font-black bg-yellow-400 text-slate-950 hover:bg-yellow-300 border-2 border-slate-950 shadow-[3px_3px_0px_#0f172a] transition-all hover:scale-105 active:scale-95">
+                        Seterusnya <i class="fa-solid fa-arrow-right ml-1"></i>
+                    </button>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- SECTION 2: MOD KOTAK PASIR (SIDE-BY-SIDE)  -->
+        <!-- ========================================== -->
+        <section id="section-playground" class="hidden grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
+            
+            <!-- PANEL KIRI (Playground): Input Table & AI Topic Generator -->
+            <div class="lg:col-span-5 flex flex-col gap-4">
+                
+                <!-- Jadual Edit Data Bebas -->
+                <div class="bg-white p-4 rounded-3xl border-3 border-slate-950 shadow-[5px_5px_0px_#0f172a]">
+                    <div class="flex justify-between items-center mb-3 border-b-2 border-slate-100 pb-2">
+                        <div>
+                            <h3 class="text-sm font-black text-slate-900 flex items-center gap-1">
+                                <span>✏️</span> Jadual Data Kamu
+                            </h3>
+                            <p class="text-[10px] font-bold text-slate-500">Nilai palang di kanan melompat serta-merta!</p>
+                        </div>
+                        <button onclick="addPlaygroundRow()" class="bg-emerald-400 hover:bg-emerald-300 text-slate-950 text-[11px] font-black px-3 py-1.5 border-2 border-slate-950 rounded-xl shadow-[2px_2px_0px_#0f172a] transition-all">
+                            <i class="fa-solid fa-plus mr-0.5"></i> Tambah Kategori
+                        </button>
+                    </div>
+
+                    <!-- Cerita Cabaran AI Semasa -->
+                    <div id="playground-story-box" class="mb-3 bg-indigo-50 border-2 border-slate-950 p-3 rounded-2xl relative overflow-hidden">
+                        <span class="text-[9px] font-black text-indigo-700 uppercase tracking-wider block mb-0.5">📖 Kisah Data Cikgu Sakinah & Cikgu Muslihah:</span>
+                        <p id="playground-story-text" class="text-[11px] font-bold text-slate-700 italic leading-relaxed"></p>
+                    </div>
+
+                    <!-- Baris Input Data Jadual Kompak -->
+                    <div id="playground-table-rows" class="flex flex-col gap-1.5 max-h-[220px] overflow-y-auto pr-1">
+                        <!-- Dijana secara dinamik oleh JS -->
+                    </div>
+
+                    <!-- Butang Data Pratetap Cepat -->
+                    <div class="mt-3 border-t-2 border-slate-100 pt-3 flex gap-2">
+                        <button onclick="resetPlaygroundData('sekolah')" class="flex-1 bg-sky-100 hover:bg-sky-200 text-slate-900 text-[10px] font-black py-2 px-1 border-2 border-slate-950 rounded-lg shadow-[2px_2px_0px_#0f172a] transition-all">
+                            <i class="fa-solid fa-rotate-left mr-0.5"></i> Data Asal Rani
+                        </button>
+                        <button onclick="resetPlaygroundData('haiwan')" class="flex-1 bg-purple-100 hover:bg-purple-200 text-slate-900 text-[10px] font-black py-2 px-1 border-2 border-slate-950 rounded-lg shadow-[2px_2px_0px_#0f172a] transition-all">
+                            <i class="fa-solid fa-cat mr-0.5"></i> Haiwan Comel
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Penjana Kuiz/Soalan AI Gemini -->
+                <div class="bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 p-4 rounded-3xl text-white border-3 border-slate-950 shadow-[5px_5px_0px_#0f172a] relative overflow-hidden">
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-2 mb-1.5">
+                            <span class="bg-white/20 text-white text-[9px] font-black px-2.5 py-0.5 rounded-full uppercase tracking-wider border border-white/30 flex items-center gap-1">
+                                <i class="fa-solid fa-robot"></i> GrafiKidz AI
+                            </span>
+                            <span class="text-indigo-150 text-[10px] font-bold text-indigo-100">Kuasa Gemini 2.5</span>
+                        </div>
+                        <h4 class="font-black text-xs mb-1">Mahu Topik Kegemaran Kamu? Taip Sini!</h4>
+                        <p class="text-[10px] text-indigo-100 mb-2 leading-relaxed">
+                            Taip apa-apa topik (Cth: Dinosaur, Angkasa Lepas, Kereta Lumba) dan guru AI akan buat cerita & data jadual khas!
+                        </p>
+
+                        <div class="flex gap-2">
+                            <input type="text" id="ai-topic-input" placeholder="Cth: Angkasa Lepas, Minecraft, Boboiboy..." class="flex-grow px-3 py-2 text-xs rounded-xl text-slate-900 border-2 border-slate-950 placeholder-slate-400 font-bold focus:outline-none focus:ring-2 focus:ring-amber-300 shadow-[2px_2px_0px_#0f172a]">
+                            <button id="btn-generate-ai" onclick="generateAiChallenge()" class="bg-yellow-400 hover:bg-yellow-300 text-slate-950 text-xs font-black px-4 py-2 border-2 border-slate-950 rounded-xl transition-all shadow-[2px_2px_0px_#0f172a] flex items-center gap-1 flex-shrink-0">
+                                <i class="fa-solid fa-wand-magic-sparkles"></i> Bina Data
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- PANEL KANAN (Playground): Visual Live Graf & Analisis AI -->
+            <div class="lg:col-span-7 bg-white p-5 rounded-3xl border-3 border-slate-950 shadow-[5px_5px_0px_#0f172a] flex flex-col justify-between min-h-[550px] gap-3">
+                
+                <div class="flex justify-between items-center border-b-2 border-slate-100 pb-1.5">
+                    <div>
+                        <h3 class="text-sm font-black text-slate-900">Carta Palang Dinamik Live 📊</h3>
+                        <p class="text-[10px] font-bold text-slate-500">Hasil kemas kini jadual data di sebelah kiri</p>
+                    </div>
+                    <!-- Robot Mascot Live Expressive Eye -->
+                    <div class="w-10 h-10 rounded-full border-2 border-slate-950 bg-cyan-100 flex items-center justify-center shadow-[2px_2px_0px_#0f172a] cursor-pointer" onclick="playSuccessTada()">
+                        <svg width="24" height="24" viewBox="0 0 100 100" id="live-mascot-eye">
+                            <circle cx="50" cy="50" r="40" fill="#0f172a"/>
+                            <circle cx="35" cy="50" r="10" fill="#34d399" id="eye-left"/>
+                            <circle cx="65" cy="50" r="10" fill="#34d399" id="eye-right"/>
+                            <!-- Shine -->
+                            <circle cx="38" cy="47" r="4" fill="white"/>
+                            <circle cx="68" cy="47" r="4" fill="white"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- SVG Live Kotak Pasir (Sentiasa Bersebelahan) -->
+                <div class="bg-yellow-50/50 p-3 rounded-2xl flex items-center justify-center border-3 border-dashed border-slate-300">
+                    <svg id="playground-svg" width="530" height="340" class="max-w-full bg-white rounded-xl shadow-[3px_3px_0px_#0f172a] border-2 border-slate-950">
+                        <!-- Elemen dijanakan oleh JS -->
+                    </svg>
+                </div>
+
+                <!-- Kotak Kuiz AI & Penerangan Pintar Guru -->
+                <div id="ai-analysis-section" class="bg-indigo-50 border-2 border-slate-950 rounded-2xl p-3 flex flex-col gap-2 shadow-[2px_2px_0px_#0f172a]">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-2">
+                            <div class="bg-yellow-400 border-2 border-slate-950 text-slate-950 w-8 h-8 rounded-full flex items-center justify-center text-sm bounce-effect shadow-[1px_1px_0px_#0f172a]">
+                                <i class="fa-solid fa-robot"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-black text-slate-900 text-[11px]">Ulasan & Cabaran Cikgu Sakinah & Cikgu Muslihah AI 👩‍🏫👩‍🏫</h4>
+                                <p class="text-[9px] font-bold text-slate-500">Mari uji kebolehan kamu membaca graf!</p>
+                            </div>
+                        </div>
+                        <button id="btn-analyze" onclick="requestAiAnalysis()" class="bg-indigo-600 hover:bg-indigo-500 text-white text-[10px] font-black px-3 py-1.5 border-2 border-slate-950 rounded-lg transition-all shadow-[1.5px_1.5px_0px_#0f172a] flex items-center gap-1">
+                            <i class="fa-solid fa-comment-question"></i> Dapatkan Kuiz AI 🧠
+                        </button>
+                    </div>
+
+                    <!-- Ruang Output Ulasan & Kuiz AI -->
+                    <div id="ai-bubble-container" class="hidden">
+                        <div id="ai-shimmer" class="space-y-1.5 p-3 rounded-xl bg-white border border-slate-200">
+                            <div class="h-2.5 shimmer rounded-md w-3/4"></div>
+                            <div class="h-2.5 shimmer rounded-md w-5/6"></div>
+                        </div>
+                        <div id="ai-text-bubble" class="bg-white p-3 rounded-xl border-2 border-slate-950 text-slate-800 text-[11px] font-bold leading-relaxed max-h-[140px] overflow-y-auto">
+                            <!-- Kandungan AI -->
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center py-4 text-[10px] text-slate-600 mt-auto">
+        <p class="font-bold">✨ Sediakan pembaris, pensel warna, dan kertas graf fizikal kamu sekarang! Jom kita lukis! ✨</p>
+        <p class="text-slate-400 mt-0.5">© 2026 GrafiKidz. Dunia Simulasi Carta Palang Cikgu Sakinah & Cikgu Muslihah. Pembelajaran Sains & Matematik Kreatif.</p>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIK KAWALAN & AUDIO -->
+    <script>
+        // DATA KAWALAN UTAMA
+        const schoolData = [
+            { category: "🚶 Jalan", value: 6, color: "#3b82f6" },
+            { category: "🚲 Basikal", value: 8, color: "#10b981" },
+            { category: "🏍️ Motor", value: 5, color: "#f59e0b" },
+            { category: "🚗 Kereta", value: 11, color: "#ef4444" }
+        ];
+
+        let playgroundData = JSON.parse(JSON.stringify(schoolData));
+        let playgroundTitle = "Cara Rakan-Rakan Rani Datang Ke Sekolah";
+        let playgroundXLabel = "Cara Murid Ke Sekolah";
+        let playgroundYLabel = "Bilangan Murid (orang)";
+
+        let currentStep = 1;
+        const totalSteps = 5;
+        let isSoundEnabled = true;
+
+        // SISTEM KESAN BUNYI SINTETIK (WEB AUDIO API)
+        let audioCtx = null;
+
+        function initAudio() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+        }
+
+        // 1. Bunyi Beep / Pop Comel
+        function playCuteBeep() {
+            if (!isSoundEnabled) return;
+            initAudio();
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(300, audioCtx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(800, audioCtx.currentTime + 0.1);
+            
+            gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.1);
+            
+            osc.start();
+            osc.stop(audioCtx.currentTime + 0.1);
+        }
+
+        // 2. Bunyi Tada / Kejayaan
+        function playSuccessTada() {
+            if (!isSoundEnabled) return;
+            initAudio();
+            const notes = [261.63, 329.63, 392.00, 523.25]; // C4, E4, G4, C5
+            notes.forEach((freq, index) => {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(freq, audioCtx.currentTime + (index * 0.1));
+                
+                gain.gain.setValueAtTime(0.12, audioCtx.currentTime + (index * 0.1));
+                gain.gain.exponentialRampToValueAtTime(0.005, audioCtx.currentTime + (index * 0.1) + 0.4);
+                
+                osc.start(audioCtx.currentTime + (index * 0.1));
+                osc.stop(audioCtx.currentTime + (index * 0.1) + 0.4);
+            });
+        }
+
+        // 3. Bunyi Amaran/Salah Comel
+        function playErrorBuzz() {
+            if (!isSoundEnabled) return;
+            initAudio();
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            
+            osc.type = 'sawtooth';
+            osc.frequency.setValueAtTime(150, audioCtx.currentTime);
+            osc.frequency.linearRampToValueAtTime(100, audioCtx.currentTime + 0.25);
+            
+            gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.25);
+            
+            osc.start();
+            osc.stop(audioCtx.currentTime + 0.25);
+        }
+
+        function toggleSound() {
+            isSoundEnabled = !isSoundEnabled;
+            const btn = document.getElementById('btn-sound-toggle');
+            const iconWrapper = document.getElementById('sound-icon-wrapper');
+            const statusText = document.getElementById('sound-status-text');
+            
+            if (isSoundEnabled) {
+                statusText.innerText = "🔊 Bunyi Aktif";
+                btn.classList.add('bg-white');
+                btn.classList.remove('bg-rose-100');
+                iconWrapper.style.display = "flex";
+                playCuteBeep();
+            } else {
+                statusText.innerText = "🔇 Senyap";
+                btn.classList.remove('bg-white');
+                btn.classList.add('bg-rose-100');
+                iconWrapper.style.display = "none";
+            }
+        }
+
+        function showModal(title, msg, type = 'info') {
+            const modal = document.getElementById('custom-modal');
+            const content = document.getElementById('modal-content');
+            const iconBg = document.getElementById('modal-icon-bg');
+            const icon = document.getElementById('modal-icon');
+            const titleEl = document.getElementById('modal-title');
+            const msgEl = document.getElementById('modal-message');
+
+            titleEl.textContent = title;
+            msgEl.innerHTML = msg;
+
+            if (type === 'success') {
+                iconBg.className = "w-24 h-24 rounded-full bg-pink-100 border-4 border-slate-900 flex items-center justify-center text-slate-950 text-5xl mb-4";
+                icon.className = "fa-solid fa-face-laugh-beam animate-bounce";
+                playSuccessTada();
+                triggerConfetti();
+            } else if (type === 'error') {
+                iconBg.className = "w-16 h-16 rounded-full bg-rose-100 border-3 border-slate-950 flex items-center justify-center text-rose-600 text-3xl mb-3";
+                icon.className = "fa-solid fa-face-frown animate-pulse";
+                playErrorBuzz();
+            } else {
+                iconBg.className = "w-16 h-16 rounded-full bg-yellow-100 border-3 border-slate-950 flex items-center justify-center text-slate-950 text-3xl mb-3";
+                icon.className = "fa-solid fa-star animate-spin";
+                playCuteBeep();
+            }
+
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            content.classList.remove('scale-95');
+            content.classList.add('scale-100');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('custom-modal');
+            const content = document.getElementById('modal-content');
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            content.classList.remove('scale-100');
+            content.classList.add('scale-95');
+            playCuteBeep();
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast-notif');
+            document.getElementById('toast-message').innerText = msg;
+            toast.classList.remove('opacity-0', 'translate-y-20');
+            toast.classList.add('opacity-100', 'translate-y-0');
+
+            setTimeout(() => {
+                toast.classList.remove('opacity-100', 'translate-y-0');
+                toast.classList.add('opacity-0', 'translate-y-20');
+            }, 3000);
+        }
+
+        function triggerConfetti() {
+            const container = document.getElementById('effect-overlay');
+            const colors = ['#f43f5e', '#3b82f6', '#10b981', '#eab308', '#a855f7', '#ff7849'];
+            
+            for (let i = 0; i < 40; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.animationDuration = (Math.random() * 2 + 1) + 's';
+                confetti.style.animationDelay = Math.random() * 0.3 + 's';
+                container.appendChild(confetti);
+
+                setTimeout(() => {
+                    confetti.remove();
+                }, 3000);
+            }
+        }
+
+        function switchMode(mode) {
+            playCuteBeep();
+            const btnTutorial = document.getElementById('btn-tutorial');
+            const btnPlayground = document.getElementById('btn-playground');
+            const secTutorial = document.getElementById('section-tutorial');
+            const secPlayground = document.getElementById('section-playground');
+
+            if (mode === 'tutorial') {
+                btnTutorial.className = "px-5 py-2.5 rounded-xl text-xs md:text-sm font-black transition-all duration-300 bg-yellow-400 text-slate-950 border-2 border-slate-950 shadow-[1.5px_1.5px_0px_#0f172a] cursor-pointer hover:scale-105";
+                btnPlayground.className = "px-5 py-2.5 rounded-xl text-xs md:text-sm font-black transition-all duration-300 text-slate-700 hover:text-slate-950 ml-1 cursor-pointer hover:scale-105";
+                secTutorial.classList.remove('hidden');
+                secPlayground.classList.add('hidden');
+                renderStep(currentStep);
+            } else {
+                btnPlayground.className = "px-5 py-2.5 rounded-xl text-xs md:text-sm font-black transition-all duration-300 bg-yellow-400 text-slate-950 border-2 border-slate-950 shadow-[1.5px_1.5px_0px_#0f172a] cursor-pointer hover:scale-105";
+                btnTutorial.className = "px-5 py-2.5 rounded-xl text-xs md:text-sm font-black transition-all duration-300 text-slate-700 hover:text-slate-950 ml-1 cursor-pointer hover:scale-105";
+                secPlayground.classList.remove('hidden');
+                secTutorial.classList.add('hidden');
+                renderPlaygroundGraph();
+            }
+        }
+
+        // FUNGSI JUMP TO STEP (Membolehkan murid klik peta langkah bila-bila masa)
+        function jumpToStep(stepNum) {
+            playCuteBeep();
+            currentStep = stepNum;
+            renderStep(currentStep);
+            showToast(`Lompat ke Langkah ${stepNum}! ✨`);
+        }
+
+        // ==========================================
+        // SISTEM LANGKAH TUTORIAL (STEP-BY-STEP)
+        // ==========================================
+        function renderStep(step) {
+            // Urus Kelas Peta Sisi (Menonjolkan langkah aktif)
+            for (let i = 1; i <= totalSteps; i++) {
+                const nav = document.getElementById(`step-nav-${i}`);
+                const numSpan = nav.querySelector('span');
+                if (i === step) {
+                    nav.classList.add('step-active');
+                    nav.className = nav.className.replace('text-slate-400', 'text-slate-800');
+                    numSpan.className = "w-5 h-5 rounded-full flex items-center justify-center bg-blue-600 text-white font-bold text-[9px]";
+                } else {
+                    nav.classList.remove('step-active');
+                    numSpan.className = "w-5 h-5 rounded-full flex items-center justify-center bg-slate-200 text-slate-600 font-bold text-[9px]";
+                }
+            }
+
+            // Status Navigasi Bawah
+            document.getElementById('txt-step-indicator').innerText = `Langkah ${step} daripada ${totalSteps}`;
+            
+            // Butang previous sentiasa aktif kecuali langkah 1
+            const btnPrev = document.getElementById('btn-prev-step');
+            if (step === 1) {
+                btnPrev.disabled = true;
+                btnPrev.classList.add('opacity-50', 'cursor-not-allowed');
+            } else {
+                btnPrev.disabled = false;
+                btnPrev.classList.remove('opacity-50', 'cursor-not-allowed');
+            }
+
+            const btnNext = document.getElementById('btn-next-step');
+            if (step === totalSteps) {
+                btnNext.innerHTML = 'Selesai & Jom Terokai! 🌟';
+                btnNext.className = "px-4 py-2 rounded-xl text-xs font-black bg-emerald-400 text-slate-950 hover:bg-emerald-300 border-2 border-slate-950 shadow-[2px_2px_0px_#0f172a] transition-all";
+            } else {
+                btnNext.innerHTML = 'Seterusnya <i class="fa-solid fa-arrow-right ml-1"></i>';
+                btnNext.className = "px-4 py-2 rounded-xl text-xs font-black bg-yellow-400 text-slate-950 hover:bg-yellow-300 border-2 border-slate-950 shadow-[2px_2px_0px_#0f172a] transition-all";
+            }
+
+            // Urus Kebolehnampakan Elemen SVG mengikut Langkah semasa
+            const elements = {
+                svgY: document.getElementById('svg-axis-y'),
+                svgX: document.getElementById('svg-axis-x'),
+                arrY: document.getElementById('arrow-y'),
+                arrX: document.getElementById('arrow-x'),
+                lblY: document.getElementById('lbl-y-axis'),
+                lblX: document.getElementById('lbl-x-axis'),
+                grid: document.getElementById('svg-grid'),
+                ticksY: document.getElementById('svg-ticks-y'),
+                catsX: document.getElementById('svg-categories-x'),
+                barsG: document.getElementById('svg-bars'),
+                titleG: document.getElementById('lbl-graph-title')
+            };
+
+            const controls = document.getElementById('interactive-controls');
+
+            // Logik Sembunyi/Tunjuk Elemen
+            if (step >= 1) {
+                elements.svgY.classList.remove('opacity-0');
+                elements.svgX.classList.remove('opacity-0');
+                elements.arrY.classList.remove('opacity-0');
+                elements.arrX.classList.remove('opacity-0');
+            } else {
+                elements.svgY.classList.add('opacity-0');
+                elements.svgX.classList.add('opacity-0');
+                elements.arrY.classList.add('opacity-0');
+                elements.arrX.classList.add('opacity-0');
+            }
+
+            if (step >= 2) {
+                elements.lblY.classList.remove('opacity-0');
+                elements.lblX.classList.remove('opacity-0');
+            } else {
+                elements.lblY.classList.add('opacity-0');
+                elements.lblX.classList.add('opacity-0');
+            }
+
+            if (step >= 3) {
+                elements.grid.classList.remove('opacity-0');
+                elements.ticksY.classList.remove('opacity-0');
+                elements.catsX.classList.remove('opacity-0');
+            } else {
+                elements.grid.classList.add('opacity-0');
+                elements.ticksY.classList.add('opacity-0');
+                elements.catsX.classList.add('opacity-0');
+            }
+
+            if (step >= 4) {
+                elements.barsG.classList.remove('opacity-0');
+            } else {
+                elements.barsG.classList.add('opacity-0');
+            }
+
+            if (step >= 5) {
+                elements.titleG.classList.remove('opacity-0');
+            } else {
+                elements.titleG.classList.add('opacity-0');
+            }
+
+            // Urus Arahan Pengguna Langkah-demi-langkah
+            switch (step) {
+                case 1:
+                    document.getElementById('tut-step-title').innerText = "Langkah 1: Bina Paksi X dan Paksi Y";
+                    document.getElementById('tut-step-desc').innerText = "Setiap carta palang memerlukan paksi menegak (Paksi Y) untuk bilangan kuantiti dan paksi mengufuk (Paksi X) untuk kategori. Tekan butang lukis di bawah!";
+                    
+                    controls.innerHTML = `
+                        <div class="text-blue-500 text-3xl mb-2"><i class="fa-solid fa-arrows-up-down-left-right animate-bounce"></i></div>
+                        <h4 class="font-black text-slate-800 text-xs">Jom Lukis Paksi!</h4>
+                        <p class="text-[10px] font-semibold text-slate-500 mt-0.5 mb-3">Mula-mula, lukiskan garisan paksi menegak dan mendatar dengan kemas menggunakan pembaris.</p>
+                        <button onclick="triggerAxisDraw()" class="w-full bg-blue-500 hover:bg-blue-400 text-slate-950 font-black py-2 px-3 rounded-xl text-xs border-2 border-slate-950 shadow-[2px_2px_0px_#0f172a] transition-all">
+                            <i class="fa-solid fa-pencil mr-1"></i> Klik untuk Lukis Paksi ✏️
+                        </button>
+                    `;
+                    break;
+
+                case 2:
+                    document.getElementById('tut-step-title').innerText = "Langkah 2: Tulis Label Paksi";
+                    document.getElementById('tut-step-desc').innerText = "Paksi kosong perlu dilabel supaya orang tahu apa jenis data yang diukur. Mari padankan label paksi ini dengan betul!";
+                    
+                    controls.innerHTML = `
+                        <div class="text-indigo-500 text-3xl mb-2"><i class="fa-solid fa-tags"></i></div>
+                        <h4 class="font-black text-slate-800 text-xs">Letakkan Label Paksi</h4>
+                        <p class="text-[10px] font-semibold text-slate-500 mt-0.5 mb-3">Tekan butang di bawah untuk menulis nama label bagi kedua-dua paksi.</p>
+                        <div class="flex flex-col gap-1.5">
+                            <button onclick="setLabel('y', 'Bilangan Murid (orang)')" class="bg-indigo-100 hover:bg-indigo-200 text-slate-950 border-2 border-slate-950 font-black py-2 px-3 rounded-xl text-[10px] transition-all shadow-[2.5px_2.5px_0px_#0f172a]">
+                                Label Paksi Y: Bilangan Murid (orang) 🏷️
+                            </button>
+                            <button onclick="setLabel('x', 'Cara Murid ke Sekolah')" class="bg-pink-100 hover:bg-pink-200 text-slate-950 border-2 border-slate-950 font-black py-2 px-3 rounded-xl text-[10px] transition-all shadow-[2.5px_2.5px_0px_#0f172a]">
+                                Label Paksi X: Cara Murid ke Sekolah 🏷️
+                            </button>
+                        </div>
+                    `;
+                    break;
+
+                case 3:
+                    document.getElementById('tut-step-title').innerText = "Langkah 3: Tentukan Skala Senggatan";
+                    document.getElementById('tut-step-desc').innerText = "Tentukan skala yang paling sesuai berdasarkan nilai maksimum dalam jadual data (nilai maks: 11). Skala sifir 2 (0, 2, 4, 6, 8, 10, 12) adalah pilihan terbaik!";
+                    
+                    controls.innerHTML = `
+                        <div class="text-emerald-500 text-3xl mb-2"><i class="fa-solid fa-ruler animate-pulse"></i></div>
+                        <h4 class="font-black text-slate-800 text-xs">Bina Skala Senggatan Sifir 2</h4>
+                        <p class="text-[10px] font-semibold text-slate-500 mt-0.5 mb-3">Tanda senggatan mestilah bernilai seragam supaya graf kamu dibina dengan tepat.</p>
+                        <button onclick="generateTutorialScale()" class="w-full bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-black py-2 px-3 rounded-xl text-xs border-2 border-slate-950 shadow-[2px_2px_0px_#0f172a] transition-all">
+                            <i class="fa-solid fa-calculator mr-1"></i> Bina Senggatan Sifir 2 🔢
+                        </button>
+                    `;
+                    break;
+
+                case 4:
+                    document.getElementById('tut-step-title').innerText = "Langkah 4: Melukis Palang Mengikut Data";
+                    document.getElementById('tut-step-desc').innerText = "Tarik gelongsor pelaras ketinggian palang di bawah untuk memadankan setiap nilai bilangan dalam jadual data asal Rani.";
+                    
+                    controls.innerHTML = `
+                        <div class="text-amber-500 text-3xl mb-1"><i class="fa-solid fa-chart-simple"></i></div>
+                        <h4 class="font-black text-slate-800 text-xs">Laraskan Ketinggian Palang!</h4>
+                        <p class="text-[9px] font-semibold text-slate-500 mb-2">Tarik gelongsor atau tekan butang pembantu di bawah:</p>
+                        <div class="flex flex-col gap-1.5 text-left text-[10px] font-black">
+                            <div>
+                                <div class="flex justify-between text-[10px]">
+                                    <span>🚶 Berjalan Kaki (Sasaran: 6)</span>
+                                    <span id="val-txt-0" class="text-blue-600">0</span>
+                                </div>
+                                <input type="range" min="0" max="12" value="0" id="slide-0" oninput="updateTutBar(0, this.value)" class="w-full h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer">
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-[10px]">
+                                    <span>🚲 Basikal (Sasaran: 8)</span>
+                                    <span id="val-txt-1" class="text-emerald-600">0</span>
+                                </div>
+                                <input type="range" min="0" max="12" value="0" id="slide-1" oninput="updateTutBar(1, this.value)" class="w-full h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer">
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-[10px]">
+                                    <span>🏍️ Motosikal (Sasaran: 5)</span>
+                                    <span id="val-txt-2" class="text-amber-600">0</span>
+                                </div>
+                                <input type="range" min="0" max="12" value="0" id="slide-2" oninput="updateTutBar(2, this.value)" class="w-full h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer">
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-[10px]">
+                                    <span>🚗 Kereta (Sasaran: 11)</span>
+                                    <span id="val-txt-3" class="text-red-600">0</span>
+                                </div>
+                                <input type="range" min="0" max="12" value="0" id="slide-3" oninput="updateTutBar(3, this.value)" class="w-full h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer">
+                            </div>
+                        </div>
+                        <div class="flex gap-2 mt-3">
+                            <button onclick="autoSolveTutorialBars()" class="flex-1 bg-teal-100 hover:bg-teal-200 text-teal-900 border-2 border-teal-950 font-black py-1.5 px-2 rounded-xl text-[10px] transition-all shadow-[2px_2px_0px_#0f172a]">
+                                Selesaikan Automatik 🪄
+                            </button>
+                        </div>
+                        <div id="bar-validation-msg" class="mt-2 text-[10px] font-black text-amber-600 hidden">
+                            <i class="fa-solid fa-triangle-exclamation mr-0.5"></i> Palang belum tepat dengan Jadual Rani, tetapi kamu boleh meneruskan langkah untuk belajar!
+                        </div>
+                    `;
+                    initTutorialBars();
+                    break;
+
+                case 5:
+                    document.getElementById('tut-step-title').innerText = "Langkah 5: Tulis Tajuk Graf Anda";
+                    document.getElementById('tut-step-desc').innerText = "Langkah terakhir yang sangat penting! Setiap graf mesti mempunyai tajuk yang jelas supaya orang mudah faham apa yang digambarkan.";
+                    
+                    controls.innerHTML = `
+                        <div class="text-rose-500 text-3xl mb-2"><i class="fa-solid fa-heading"></i></div>
+                        <h4 class="font-black text-slate-800 text-xs">Pilih Tajuk Paling Sesuai</h4>
+                        <p class="text-[10px] font-semibold text-slate-500 mt-0.5 mb-3">Klik tajuk paling menerangkan keseluruhan kajian graf Rani.</p>
+                        <div class="flex flex-col gap-1.5">
+                            <button onclick="setTutTitleWrong()" class="bg-slate-100 hover:bg-slate-200 text-slate-700 border-2 border-slate-300 font-bold py-2 px-3 rounded-xl text-[10px] transition-all">
+                                Rani Dan Kawan-Kawannya
+                            </button>
+                            <button onclick="setTutTitle('Cara Rakan-Rakan Rani Datang Ke Sekolah')" class="bg-yellow-400 hover:bg-yellow-300 text-slate-950 border-2 border-slate-950 font-black py-2 px-3 rounded-xl text-[10px] transition-all shadow-[2.5px_2.5px_0px_#0f172a]">
+                                Cara Rakan-Rakan Rani Datang Ke Sekolah 🎯
+                            </button>
+                        </div>
+                    `;
+                    break;
+            }
+        }
+
+        function nextStep() {
+            if (currentStep === 4) {
+                const val0 = parseInt(document.getElementById('slide-0').value);
+                const val1 = parseInt(document.getElementById('slide-1').value);
+                const val2 = parseInt(document.getElementById('slide-2').value);
+                const val3 = parseInt(document.getElementById('slide-3').value);
+
+                if (val0 === 6 && val1 === 8 && val2 === 5 && val3 === 11) {
+                    triggerConfetti();
+                    playSuccessTada();
+                } else {
+                    // Tunjukkan pesanan mesra tapi BENARKAN murid terus belajar (tidak lagi disekat kasar)
+                    const errMsg = document.getElementById('bar-validation-msg');
+                    if (errMsg) errMsg.classList.remove('hidden');
+                }
+            }
+
+            if (currentStep < totalSteps) {
+                currentStep++;
+                playCuteBeep();
+                renderStep(currentStep);
+            } else {
+                showModal("Luar Biasa! 🎉🎈", "Kamu telah berjaya melukis graf pertama dengan sempurna! Sekarang jom kita melompat ke <strong>Jom Terokai</strong> dan cabar Cikgu Sakinah & Cikgu Muslihah AI untuk buat tugasan baharu!", "success");
+                switchMode('playground');
+            }
+        }
+
+        function prevStep() {
+            if (currentStep > 1) {
+                currentStep--;
+                playCuteBeep();
+                renderStep(currentStep);
+            }
+        }
+
+        // FUNGSI PEMBANTU SELESAIKAN AUTOMATIK (Untuk membantu murid sekolah rendah)
+        function autoSolveTutorialBars() {
+            playSuccessTada();
+            updateTutBar(0, 6);
+            updateTutBar(1, 8);
+            updateTutBar(2, 5);
+            updateTutBar(3, 11);
+            
+            // Kemas kini nilai di slider
+            if (document.getElementById('slide-0')) document.getElementById('slide-0').value = 6;
+            if (document.getElementById('slide-1')) document.getElementById('slide-1').value = 8;
+            if (document.getElementById('slide-2')) document.getElementById('slide-2').value = 5;
+            if (document.getElementById('slide-3')) document.getElementById('slide-3').value = 11;
+
+            showToast("Bim salabim! Palang diselaraskan secara automatik! 🪄");
+            triggerConfetti();
+        }
+
+        // AKSI LANGKAH 1
+        function triggerAxisDraw() {
+            document.getElementById('svg-axis-y').classList.remove('opacity-0');
+            document.getElementById('svg-axis-x').classList.remove('opacity-0');
+            document.getElementById('arrow-y').classList.remove('opacity-0');
+            document.getElementById('arrow-x').classList.remove('opacity-0');
+            playSuccessTada();
+            showToast("Wala! Garisan Paksi X & Y berjaya dibina!");
+        }
+
+        // AKSI LANGKAH 2
+        function setLabel(axis, text) {
+            playCuteBeep();
+            if (axis === 'y') {
+                const lbl = document.getElementById('lbl-y-axis');
+                lbl.textContent = text;
+                lbl.classList.remove('opacity-0');
+                showToast("Paksi Y dilabel dengan Bilangan Murid!");
+            } else if (axis === 'x') {
+                const lbl = document.getElementById('lbl-x-axis');
+                lbl.textContent = text;
+                lbl.classList.remove('opacity-0');
+                showToast("Paksi X dilabel dengan Cara Murid ke Sekolah!");
+            }
+        }
+
+        // AKSI LANGKAH 3
+        function generateTutorialScale() {
+            playSuccessTada();
+            const ticksY = document.getElementById('svg-ticks-y');
+            const grid = document.getElementById('svg-grid');
+            
+            ticksY.innerHTML = '';
+            grid.innerHTML = '';
+
+            const stepVal = 2;
+            const maxVal = 12;
+            
+            for (let i = 0; i <= maxVal; i += stepVal) {
+                const yPos = 290 - (i / maxVal) * (290 - 50);
+                
+                // Senggatan Tick
+                const tickLine = document.createElementNS("http://www.w3.org/2000/svg", "line");
+                tickLine.setAttribute("x1", "54");
+                tickLine.setAttribute("y1", yPos);
+                tickLine.setAttribute("x2", "60");
+                tickLine.setAttribute("y2", yPos);
+                tickLine.setAttribute("stroke", "#0f172a");
+                tickLine.setAttribute("stroke-width", "3");
+                ticksY.appendChild(tickLine);
+
+                // Teks Angka
+                const tickText = document.createElementNS("http://www.w3.org/2000/svg", "text");
+                tickText.setAttribute("x", "44");
+                tickText.setAttribute("y", yPos + 4);
+                tickText.setAttribute("fill", "#0f172a");
+                tickText.setAttribute("font-size", "11");
+                tickText.setAttribute("font-weight", "black");
+                tickText.setAttribute("text-anchor", "end");
+                tickText.textContent = i;
+                ticksY.appendChild(tickText);
+
+                // Garis Pandu Grid Sisi
+                if (i > 0) {
+                    const gridLine = document.createElementNS("http://www.w3.org/2000/svg", "line");
+                    gridLine.setAttribute("x1", "60");
+                    gridLine.setAttribute("y1", yPos);
+                    gridLine.setAttribute("x2", "500");
+                    gridLine.setAttribute("y2", yPos);
+                    gridLine.setAttribute("stroke", "#cbd5e1");
+                    gridLine.setAttribute("stroke-width", "1.5");
+                    gridLine.setAttribute("stroke-dasharray", "4");
+                    grid.appendChild(gridLine);
+                }
+            }
+
+            ticksY.classList.remove('opacity-0');
+            grid.classList.remove('opacity-0');
+            document.getElementById('svg-categories-x').classList.remove('opacity-0');
+            showToast("Bagus! Skala senggatan sifir 2 sedia!");
+        }
+
+        // AKSI LANGKAH 4 (LUKIS PALANG DATA)
+        let tutorialBarValues = [0, 0, 0, 0];
+        function initTutorialBars() {
+            const barsG = document.getElementById('svg-bars');
+            barsG.innerHTML = '';
+
+            for (let i = 0; i < 4; i++) {
+                const xPos = 85 + i * 100;
+                
+                const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+                rect.setAttribute("id", `tut-bar-rect-${i}`);
+                rect.setAttribute("x", xPos);
+                rect.setAttribute("y", 290);
+                rect.setAttribute("width", "50");
+                rect.setAttribute("height", "0");
+                rect.setAttribute("fill", schoolData[i].color);
+                rect.setAttribute("stroke", "#0f172a");
+                rect.setAttribute("stroke-width", "3");
+                rect.setAttribute("rx", "8");
+                rect.setAttribute("class", "transition-all duration-200 origin-bottom");
+                barsG.appendChild(rect);
+
+                const textVal = document.createElementNS("http://www.w3.org/2000/svg", "text");
+                textVal.setAttribute("id", `tut-bar-val-${i}`);
+                textVal.setAttribute("x", xPos + 25);
+                textVal.setAttribute("y", 285);
+                textVal.setAttribute("fill", "#0f172a");
+                textVal.setAttribute("font-size", "11");
+                textVal.setAttribute("font-weight", "black");
+                textVal.setAttribute("text-anchor", "middle");
+                textVal.textContent = "0";
+                barsG.appendChild(textVal);
+            }
+        }
+
+        function updateTutBar(index, val) {
+            playCuteBeep();
+            tutorialBarValues[index] = parseInt(val);
+            const valTxt = document.getElementById(`val-txt-${index}`);
+            if (valTxt) valTxt.innerText = val;
+
+            const maxVal = 12;
+            const yPos = 290 - (val / maxVal) * (290 - 50);
+            const height = (val / maxVal) * (290 - 50);
+
+            const rect = document.getElementById(`tut-bar-rect-${index}`);
+            if (rect) {
+                rect.setAttribute("y", yPos);
+                rect.setAttribute("height", height);
+                rect.classList.remove('bar-wiggle-effect');
+                void rect.offsetWidth; 
+                rect.classList.add('bar-wiggle-effect');
+            }
+
+            const text = document.getElementById(`tut-bar-val-${index}`);
+            if (text) {
+                text.setAttribute("y", yPos - 6);
+                text.textContent = val;
+            }
+
+            const validationMsg = document.getElementById('bar-validation-msg');
+            if (validationMsg) validationMsg.classList.add('hidden');
+        }
+
+        // AKSI LANGKAH 5 (TAJUK)
+        function setTutTitle(title) {
+            playSuccessTada();
+            const titleG = document.getElementById('lbl-graph-title');
+            titleG.textContent = title;
+            titleG.classList.remove('opacity-0');
+            showToast("Bagus sekali! Tajuk dipasang!");
+        }
+
+        function setTutTitleWrong() {
+            playErrorBuzz();
+            showModal("Hampir Tepat!", "Tajuk mestilah menggambarkan keseluruhan kajian graf Rani. Cuba lagi!", "error");
+        }
+
+
+        // ==========================================
+        // KOTAK PASIR BEBAS (PLAYGROUND & LIVE TABLE)
+        // ==========================================
+        function initPlayground() {
+            renderPlaygroundInputs();
+            renderPlaygroundGraph();
+        }
+
+        function renderPlaygroundInputs() {
+            const container = document.getElementById('playground-table-rows');
+            container.innerHTML = '';
+
+            playgroundData.forEach((item, index) => {
+                const div = document.createElement('div');
+                div.className = "flex items-center gap-2 bg-slate-50 p-2 rounded-xl border-2 border-slate-950 shadow-[1.5px_1.5px_0px_#0f172a]";
+                div.innerHTML = `
+                    <div class="w-4 h-4 rounded-full flex-shrink-0 border border-slate-950" style="background-color: ${item.color}"></div>
+                    <input type="text" value="${item.category}" onchange="updatePlaygroundCategory(${index}, this.value)" class="w-full bg-white border border-slate-300 rounded-lg px-2 py-1 text-xs font-black focus:outline-none focus:ring-2 focus:ring-indigo-400">
+                    <div class="flex items-center gap-1 flex-shrink-0">
+                        <button onclick="changePlaygroundValue(${index}, -1)" class="w-7 h-7 bg-red-100 hover:bg-red-200 text-slate-950 rounded-lg border-2 border-slate-950 flex items-center justify-center text-xs font-black transition-all shadow-[1px_1px_0px_#0f172a] active:translate-y-0.5">-</button>
+                        <span class="w-7 text-center font-black text-xs text-slate-800" id="play-val-lbl-${index}">${item.value}</span>
+                        <button onclick="changePlaygroundValue(${index}, 1)" class="w-7 h-7 bg-emerald-100 hover:bg-emerald-200 text-slate-950 rounded-lg border-2 border-slate-950 flex items-center justify-center text-xs font-black transition-all shadow-[1px_1px_0px_#0f172a] active:translate-y-0.5">+</button>
+                    </div>
+                    <button onclick="deletePlaygroundRow(${index})" class="text-red-500 hover:text-red-700 p-1 text-xs flex-shrink-0 transition-colors"><i class="fa-solid fa-trash-can"></i></button>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function updatePlaygroundCategory(index, value) {
+            playCuteBeep();
+            playgroundData[index].category = value;
+            renderPlaygroundGraph();
+        }
+
+        function changePlaygroundValue(index, delta) {
+            const newValue = playgroundData[index].value + delta;
+            if (newValue >= 0 && newValue <= 50) {
+                playCuteBeep();
+                playgroundData[index].value = newValue;
+                document.getElementById(`play-val-lbl-${index}`).innerText = newValue;
+                renderPlaygroundGraph();
+            }
+        }
+
+        function addPlaygroundRow() {
+            playCuteBeep();
+            if (playgroundData.length < 5) {
+                const colors = ["#8b5cf6", "#ec4899", "#14b8a6", "#f97316", "#06b6d4"];
+                const randomColor = colors[playgroundData.length % colors.length];
+                playgroundData.push({
+                    category: `⭐ Kategori ${playgroundData.length + 1}`,
+                    value: 5,
+                    color: randomColor
+                });
+                renderPlaygroundInputs();
+                renderPlaygroundGraph();
+                showToast("Kategori baru ditambah!");
+            } else {
+                showModal("Had Kategori!", "Untuk kemasukan murid sekolah rendah, hadkan kepada 5 kategori bagi mengelakkan graf bertindih ya!", "error");
+            }
+        }
+
+        function deletePlaygroundRow(index) {
+            playCuteBeep();
+            if (playgroundData.length > 2) {
+                playgroundData.splice(index, 1);
+                renderPlaygroundInputs();
+                renderPlaygroundGraph();
+                showToast("Kategori berjaya dikeluarkan!");
+            } else {
+                showModal("Had Minimum!", "Carta palang memerlukan sekurang-kurangnya 2 kategori bagi membuat perbandingan!", "error");
+            }
+        }
+
+        function resetPlaygroundData(type) {
+            playSuccessTada();
+            document.getElementById('playground-story-box').classList.add('hidden');
+            if (type === 'sekolah') {
+                playgroundData = JSON.parse(JSON.stringify(schoolData));
+                playgroundTitle = "Cara Rakan-Rakan Rani Datang Ke Sekolah";
+                playgroundXLabel = "Cara Murid Ke Sekolah";
+                playgroundYLabel = "Bilangan Murid (orang)";
+                showToast("Jadual Rani asal sedia digunakan!");
+            } else if (type === 'haiwan') {
+                playgroundData = [
+                    { category: "🐱 Kucing", value: 12, color: "#8b5cf6" },
+                    { category: "🐠 Ikan", value: 4, color: "#3b82f6" },
+                    { category: "🐰 Arnab", value: 7, color: "#ec4899" },
+                    { category: "🦜 Burung", value: 3, color: "#10b981" }
+                ];
+                playgroundTitle = "Jenis Haiwan Peliharaan Kegemaran Kami";
+                playgroundXLabel = "Jenis Haiwan Peliharaan";
+                playgroundYLabel = "Bilangan Murid (orang)";
+                showToast("Jadual Haiwan Comel sedia digunakan!");
+            }
+            renderPlaygroundInputs();
+            renderPlaygroundGraph();
+        }
+
+        // PENJANAAN CARTA PALANG PLAYGROUND DINAMIK (SVG)
+        function renderPlaygroundGraph() {
+            const svg = document.getElementById('playground-svg');
+            svg.innerHTML = '';
+
+            const width = 530;
+            const height = 340;
+            const paddingLeft = 60;
+            const paddingRight = 30;
+            const paddingTop = 50;
+            const paddingBottom = 50;
+
+            const chartWidth = width - paddingLeft - paddingRight;
+            const chartHeight = height - paddingTop - paddingBottom;
+
+            let maxDataVal = Math.max(...playgroundData.map(d => d.value));
+            if (maxDataVal === 0) maxDataVal = 10;
+            let maxScale = Math.ceil(maxDataVal / 5) * 5;
+            if (maxScale < 10) maxScale = 10;
+
+            // 1. Garis Grid Pandu
+            const gridGroup = document.createElementNS("http://www.w3.org/2000/svg", "g");
+            const ticksGroup = document.createElementNS("http://www.w3.org/2000/svg", "g");
+            
+            const stepCount = 5;
+            const stepVal = maxScale / stepCount;
+
+            for (let i = 0; i <= maxScale; i += stepVal) {
+                const yPos = height - paddingBottom - (i / maxScale) * chartHeight;
+                
+                const tickLine = document.createElementNS("http://www.w3.org/2000/svg", "line");
+                tickLine.setAttribute("x1", paddingLeft - 5);
+                tickLine.setAttribute("y1", yPos);
+                tickLine.setAttribute("x2", paddingLeft);
+                tickLine.setAttribute("y2", yPos);
+                tickLine.setAttribute("stroke", "#0f172a");
+                tickLine.setAttribute("stroke-width", "3");
+                ticksGroup.appendChild(tickLine);
+
+                const tickText = document.createElementNS("http://www.w3.org/2000/svg", "text");
+                tickText.setAttribute("x", paddingLeft - 10);
+                tickText.setAttribute("y", yPos + 4);
+                tickText.setAttribute("fill", "#0f172a");
+                tickText.setAttribute("font-size", "11");
+                tickText.setAttribute("font-weight", "black");
+                tickText.setAttribute("text-anchor", "end");
+                tickText.textContent = Math.round(i);
+                ticksGroup.appendChild(tickText);
+
+                if (i > 0) {
+                    const gridLine = document.createElementNS("http://www.w3.org/2000/svg", "line");
+                    gridLine.setAttribute("x1", paddingLeft);
+                    gridLine.setAttribute("y1", yPos);
+                    gridLine.setAttribute("x2", width - paddingRight);
+                    gridLine.setAttribute("y2", yPos);
+                    gridLine.setAttribute("stroke", "#cbd5e1");
+                    gridLine.setAttribute("stroke-width", "1.5");
+                    gridLine.setAttribute("stroke-dasharray", "4");
+                    gridGroup.appendChild(gridLine);
+                }
+            }
+            svg.appendChild(gridGroup);
+            svg.appendChild(ticksGroup);
+
+            // 2. Garis Paksi Utama
+            const axisY = document.createElementNS("http://www.w3.org/2000/svg", "line");
+            axisY.setAttribute("x1", paddingLeft);
+            axisY.setAttribute("y1", paddingTop - 10);
+            axisY.setAttribute("x2", paddingLeft);
+            axisY.setAttribute("y2", height - paddingBottom);
+            axisY.setAttribute("stroke", "#0f172a");
+            axisY.setAttribute("stroke-width", "5");
+            svg.appendChild(axisY);
+
+            const axisX = document.createElementNS("http://www.w3.org/2000/svg", "line");
+            axisX.setAttribute("x1", paddingLeft);
+            axisX.setAttribute("y1", height - paddingBottom);
+            axisX.setAttribute("x2", width - paddingRight + 10);
+            axisX.setAttribute("y2", height - paddingBottom);
+            axisX.setAttribute("stroke", "#0f172a");
+            axisX.setAttribute("stroke-width", "5");
+            svg.appendChild(axisX);
+
+            // 3. Label Nama Paksi
+            const lblY = document.createElementNS("http://www.w3.org/2000/svg", "text");
+            lblY.setAttribute("x", "18");
+            lblY.setAttribute("y", height / 2);
+            lblY.setAttribute("fill", "#0f172a");
+            lblY.setAttribute("font-size", "11");
+            lblY.setAttribute("font-weight", "black");
+            lblY.setAttribute("transform", `rotate(-90, 18, ${height/2})`);
+            lblY.setAttribute("text-anchor", "middle");
+            lblY.textContent = playgroundYLabel;
+            svg.appendChild(lblY);
+
+            const lblX = document.createElementNS("http://www.w3.org/2000/svg", "text");
+            lblX.setAttribute("x", paddingLeft + chartWidth / 2);
+            lblX.setAttribute("y", height - 10);
+            lblX.setAttribute("fill", "#0f172a");
+            lblX.setAttribute("font-size", "11");
+            lblX.setAttribute("font-weight", "black");
+            lblX.setAttribute("text-anchor", "middle");
+            lblX.textContent = playgroundXLabel;
+            svg.appendChild(lblX);
+
+            // 4. Bina Kategori & Palang
+            const barCount = playgroundData.length;
+            const barSpacing = chartWidth / barCount;
+            const barWidth = Math.min(55, barSpacing * 0.55);
+
+            const barsGroup = document.createElementNS("http://www.w3.org/2000/svg", "g");
+
+            playgroundData.forEach((item, index) => {
+                const xPos = paddingLeft + (index * barSpacing) + (barSpacing - barWidth) / 2;
+                const barHeight = (item.value / maxScale) * chartHeight;
+                const yPos = height - paddingBottom - barHeight;
+
+                const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+                rect.setAttribute("x", xPos);
+                rect.setAttribute("y", yPos);
+                rect.setAttribute("width", barWidth);
+                rect.setAttribute("height", barHeight);
+                rect.setAttribute("fill", item.color);
+                rect.setAttribute("stroke", "#0f172a");
+                rect.setAttribute("stroke-width", "3");
+                rect.setAttribute("rx", "8");
+                barsGroup.appendChild(rect);
+
+                const valText = document.createElementNS("http://www.w3.org/2000/svg", "text");
+                valText.setAttribute("x", xPos + barWidth / 2);
+                valText.setAttribute("y", yPos - 6);
+                valText.setAttribute("fill", "#0f172a");
+                valText.setAttribute("font-size", "11");
+                valText.setAttribute("font-weight", "black");
+                valText.setAttribute("text-anchor", "middle");
+                valText.textContent = item.value;
+                barsGroup.appendChild(valText);
+
+                const catText = document.createElementNS("http://www.w3.org/2000/svg", "text");
+                catText.setAttribute("x", xPos + barWidth / 2);
+                catText.setAttribute("y", height - paddingBottom + 20);
+                catText.setAttribute("fill", "#0f172a");
+                catText.setAttribute("font-size", "11");
+                catText.setAttribute("font-weight", "black");
+                catText.setAttribute("text-anchor", "middle");
+                
+                let labelStr = item.category;
+                if (labelStr.length > 12) {
+                    labelStr = labelStr.substring(0, 10) + '..';
+                }
+                catText.textContent = labelStr;
+                svg.appendChild(catText);
+            });
+
+            svg.appendChild(barsGroup);
+
+            const titleText = document.createElementNS("http://www.w3.org/2000/svg", "text");
+            titleText.setAttribute("x", paddingLeft + chartWidth / 2);
+            titleText.setAttribute("y", 28);
+            titleText.setAttribute("fill", "#0f172a");
+            titleText.setAttribute("font-size", "13");
+            titleText.setAttribute("font-family", "'Comfortaa', cursive");
+            titleText.setAttribute("font-weight", "black");
+            titleText.setAttribute("text-anchor", "middle");
+            titleText.textContent = playgroundTitle;
+            svg.appendChild(titleText);
+        }
+
+
+        // ==========================================
+        // INTEGRASI API GEMINI (AI GENERATOR & KUIZ)
+        // ==========================================
+        const apiKey = "AQ.Ab8RN6LwG5dou-lQifdT93qhMOkWIxEagsSsIP5YgmOMLXB42w"; 
+
+        async function fetchWithRetry(url, options, retries = 5, delay = 1000) {
+            try {
+                const response = await fetch(url, options);
+                if (!response.ok) {
+                    if (retries > 0 && response.status === 429) {
+                        await new Promise(resolve => setTimeout(resolve, delay));
+                        return fetchWithRetry(url, options, retries - 1, delay * 2);
+                    }
+                    throw new Error(`Ralat API pelayan (${response.status})`);
+                }
+                return response;
+            } catch (error) {
+                if (retries > 0) {
+                    await new Promise(resolve => setTimeout(resolve, delay));
+                    return fetchWithRetry(url, options, retries - 1, delay * 2);
+                }
+                throw error;
+            }
+        }
+
+        async function generateAiChallenge() {
+            const topicInput = document.getElementById('ai-topic-input');
+            const topic = topicInput.value.trim() || "Planet Angkasa Lepas";
+            const btn = document.getElementById('btn-generate-ai');
+
+            playCuteBeep();
+            btn.disabled = true;
+            btn.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> Membina...`;
+            showToast("AI sedang menyusun soalan menarik...");
+
+            const systemPrompt = "Anda adalah Cikgu Sakinah & Cikgu Muslihah, guru Matematik Sekolah Rendah di Malaysia yang sangat ceria dan suka membina soalan mesra kanak-kanak menggunakan JSON.";
+            const userQuery = `Bina satu senario data bertemakan '${topic}' untuk murid sekolah rendah (8-10 tahun). Sila berikan format JSON lengkap yang mengandungi tajuk penceritaan graf comel, soalan kisah mesra kanak-kanak, label paksi X, label paksi Y, dan senarai kategori beserta nilainya (nilai mestilah antara 3 hingga 15, hadkan 3 atau 4 kategori comel sahaja bersama emoji kegemaran murid).`;
+
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${apiKey}`;
+
+            const payload = {
+                contents: [{ parts: [{ text: userQuery }] }],
+                systemInstruction: {
+                    parts: [{ text: systemPrompt }]
+                },
+                generationConfig: {
+                    responseMimeType: "application/json",
+                    responseSchema: {
+                        type: "OBJECT",
+                        properties: {
+                            title: { type: "STRING", description: "Tajuk graf ringkas beserta emoji, maks 40 aksara." },
+                            question: { type: "STRING", description: "Satu kisah pendek pengenalan data yang menarik minat kanak-kanak." },
+                            xLabel: { type: "STRING", description: "Nama paksi-X (Contoh: Jenis Kenderaan)" },
+                            yLabel: { type: "STRING", description: "Nama paksi-Y (Contoh: Bilangan Murid (orang))" },
+                            data: {
+                                type: "ARRAY",
+                                items: {
+                                    type: "OBJECT",
+                                    properties: {
+                                        category: { type: "STRING", description: "Nama kategori ringkas dengan emoji, maks 12 aksara." },
+                                        value: { type: "INTEGER", description: "Nilai kuantiti antara 3 hingga 15 sahaja." }
+                                    },
+                                    required: ["category", "value"]
+                                }
+                            }
+                        },
+                        required: ["title", "question", "xLabel", "yLabel", "data"]
+                    }
+                }
+            };
+
+            try {
+                const response = await fetchWithRetry(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const result = await response.json();
+                const jsonText = result.candidates?.[0]?.content?.parts?.[0]?.text;
+                
+                if (jsonText) {
+                    const challengeData = JSON.parse(jsonText);
+                    
+                    playgroundTitle = challengeData.title;
+                    playgroundXLabel = challengeData.xLabel;
+                    playgroundYLabel = challengeData.yLabel;
+
+                    const colors = ["#3b82f6", "#10b981", "#f59e0b", "#ef4444", "#8b5cf6"];
+                    playgroundData = challengeData.data.map((item, index) => ({
+                        category: item.category,
+                        value: item.value,
+                        color: colors[index % colors.length]
+                    }));
+
+                    document.getElementById('playground-story-text').textContent = challengeData.question;
+                    document.getElementById('playground-story-box').classList.remove('hidden');
+
+                    renderPlaygroundInputs();
+                    renderPlaygroundGraph();
+
+                    showModal("Misi Baru Ditugaskan! 🎈", `Cikgu Sakinah & Cikgu Muslihah AI telah menyediakan cabaran:<br><br><strong>"${challengeData.title}"</strong><br><br>Sila lihat kemas kini jadual data di panel kiri skrin!`, "success");
+                } else {
+                    throw new Error("Gagal menterjemah teks JSON.");
+                }
+
+            } catch (err) {
+                console.error(err);
+                showModal("Aduh, AI Keliru!", "Nampaknya isyarat satelit terganggu. Mari kita tekan butang sekali lagi!", "error");
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = `<i class="fa-solid fa-wand-magic-sparkles"></i> Bina Data`;
+                topicInput.value = '';
+            }
+        }
+
+        async function requestAiAnalysis() {
+            const aiContainer = document.getElementById('ai-bubble-container');
+            const shimmer = document.getElementById('ai-shimmer');
+            const bubbleText = document.getElementById('ai-text-bubble');
+            const btn = document.getElementById('btn-analyze');
+
+            playCuteBeep();
+            aiContainer.classList.remove('hidden');
+            shimmer.classList.remove('hidden');
+            bubbleText.classList.add('hidden');
+            btn.disabled = true;
+            btn.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> Membina kuiz...`;
+
+            const currentDataStr = playgroundData.map(d => `${d.category}: ${d.value}`).join(', ');
+            
+            const systemPrompt = "Anda adalah Cikgu Sakinah & Cikgu Muslihah, robot guru Matematik sekolah rendah di Malaysia yang sangat mesra dan penuh kasih sayang. Anda berkomunikasi dalam Bahasa Melayu sekolah rendah yang santai dan penuh dengan emoji gembira.";
+            const userPrompt = `Saya telah membina graf palang bertajuk "${playgroundTitle}" dengan data semasa: [${currentDataStr}]. Paksi-X ialah "${playgroundXLabel}" dan Paksi-Y ialah "${playgroundYLabel}".
+            
+            Sila berikan maklum balas mengandungi:
+            1. Puji usaha murid secara mesra (1 ayat comel).
+            2. Nyatakan maksud ringkas graf ini (1 ayat ringkas).
+            3. Kemukakan 2 soalan kuiz ringkas (Cth: hitung jumlah keseluruhan atau cari beza antara yang tertinggi dengan yang terendah) dan berikan jawapannya secara tersembunyi di dalam kurungan (contoh: [Jawapan: 15]) bagi mencabar pemikiran murid.`;
+
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${apiKey}`;
+
+            const payload = {
+                contents: [{ parts: [{ text: userPrompt }] }],
+                systemInstruction: {
+                    parts: [{ text: systemPrompt }]
+                }
+            };
+
+            try {
+                const response = await fetchWithRetry(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const result = await response.json();
+                const aiText = result.candidates?.[0]?.content?.parts?.[0]?.text;
+
+                if (aiText) {
+                    bubbleText.innerHTML = aiText.replace(/\n/g, '<br>');
+                    shimmer.classList.add('hidden');
+                    bubbleText.classList.remove('hidden');
+                    playSuccessTada();
+                    showToast("Kuiz daripada Cikgu Sakinah & Cikgu Muslihah sudah sedia!");
+                } else {
+                    throw new Error("Gagal memperoleh ulasan AI.");
+                }
+
+            } catch (err) {
+                console.error(err);
+                bubbleText.innerHTML = "<strong>Opps!</strong> Kami sedang mengecas bateri seketika. Sila tekan semula butang sebentar lagi ya!";
+                shimmer.classList.add('hidden');
+                bubbleText.classList.remove('hidden');
+                playErrorBuzz();
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = `<i class="fa-solid fa-comment-question"></i> Dapatkan Kuiz AI 🧠`;
+            }
+        }
+    </script>
+</body>
+</html>
